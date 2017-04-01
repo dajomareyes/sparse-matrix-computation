@@ -45,13 +45,13 @@ public class MatrixComputation {
         SparseMatrix matrixG = matrixA.subtract(matrixB);
         matrixG.print();        
         //follow the format above and fill up to 10. Matrix N = M - I
-        /*
+        
         // Testcase Step 3
         System.out.println("11. Matrix O = 5 * B: ");
         SparseMatrix matrixO = matrixB.scalarMultiply(5);
         matrixO.print();        
         //follow the format above and fill up to 22. Matrix Z = M * T
-        
+        /*
         //Optional
         System.out.println("23. Matrix AA = transpose(F): ");
         SparseMatrix matrixAA = matrixF.transpose();

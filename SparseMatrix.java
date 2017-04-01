@@ -169,20 +169,39 @@ public class SparseMatrix {
     public SparseMatrix scalarMultiply(int a) {
         SparseMatrix result = null;
         
+        Node[] rowHeaders = createRowHeaders(size);
+        Node[] colHeaders = createColHeaders(size);
+
+        for(Node row : rowHeads){
+            scalarNode(rowHeaders, colHeaders, row.rowLink, a);
+        }
+
+        result = new SparseMatrix(rowHeaders, colHeaders);
+        result.size = size;
+
         return result;
     }
 
-    public static void scalarNode(Node[] rowHeads, Node[] colHead, Node start, int scalar) {
-        if(start.col == -1)
+    public static void scalarNode(Node[] rowHead, Node[] colHead, Node start, int scalar) {
+        if(start.col == -1){
             return;
-        else()
+        } else {
+            insert(rowHead, colHead, start.value * scalar, start.row, start.col);
+            scalarNode(rowHead, colHead, start.rowLink, scalar);
+        }
 
     }
 
     //parameter m --> another sparse matrix m
     public SparseMatrix matrixMultiply(SparseMatrix m) {
         SparseMatrix result = null;
+                   
         return result;
+    }
+
+    public static void dotProductNodes(Node[] rowHeads, Node[] colHeads, Node rowNode, Node colNode) {
+        
+        return;
     }
 
     //integer c
