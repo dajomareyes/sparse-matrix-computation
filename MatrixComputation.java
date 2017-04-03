@@ -30,8 +30,8 @@ public class MatrixComputation {
         matrixC.print(); 
         System.out.println("Matrix D: ");
         matrixD.print();
+        /* Test Step One
         
-        /*
         // Testcase Step 2    
         System.out.println("1. Matrix E = B + D: ");
         SparseMatrix matrixE = matrixB.add(matrixD);
