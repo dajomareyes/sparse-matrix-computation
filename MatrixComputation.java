@@ -31,7 +31,7 @@ public class MatrixComputation {
         System.out.println("Matrix D: ");
         matrixD.print();
         
-        
+        /*
         // Testcase Step 2    
         System.out.println("1. Matrix E = B + D: ");
         SparseMatrix matrixE = matrixB.add(matrixD);
@@ -51,7 +51,7 @@ public class MatrixComputation {
         SparseMatrix matrixO = matrixB.scalarMultiply(5);
         matrixO.print();        
         //follow the format above and fill up to 22. Matrix Z = M * T
-        /*
+        
         //Optional
         System.out.println("23. Matrix AA = transpose(F): ");
         SparseMatrix matrixAA = matrixF.transpose();
