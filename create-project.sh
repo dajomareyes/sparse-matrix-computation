@@ -7,20 +7,20 @@
 
 echo starting submission creation process
 
-echo compiling files...
-javac -d submit *.java
+# echo compiling files...
+# javac -d submit *.java
 
 echo copying java files into folder
 cp *.java submit
 
-echo copying input.txt file into submit folder
+echo copying input.txt file from my bin dir into submit dir 
 cp bin/input.txt submit
 
 echo creating zipped version of DIR
 cd submit
 
 # change the line below to create a new tar version for each project step
-tar -zcvf step-one.tar.gz *.java *.class *.txt
+tar -zcvf step-one.tar.gz *.java *.txt
 
 echo finished...
 
