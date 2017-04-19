@@ -19,10 +19,10 @@ public class SparseMatrix {
     public static SparseMatrix initializeByInput(File file) {
         int row, col, value;
         SparseMatrix result = null;
-        int size = 0; 
+        int size = 0;
         Node[] rowHeads = null;
         Node[] colHeads = null;
-        
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
@@ -30,7 +30,7 @@ public class SparseMatrix {
             String line = "";
 	        line = reader.readLine();
             size = Integer.parseInt(line);
-            
+
             rowHeads = createRowHeaders(size);
             colHeads = createColHeaders(size);
 
@@ -52,7 +52,7 @@ public class SparseMatrix {
     // parameter n --> given matrix size n
     public static SparseMatrix[] initializeByFormula(int n) {
         SparseMatrix[] result = new SparseMatrix[3];
-        
+
         result[0] = implementFormulaB(n);
         result[1] = implementFormulaC(n);
         result[2] = implementFormulaD(n);
@@ -75,15 +75,15 @@ public class SparseMatrix {
                     counter++;
                 }
             }
-            
-            
+
+
             System.out.println("|");
         }
     }
 
     //parameter m --> another sparse matrix m
     public SparseMatrix add(SparseMatrix m) {
-        SparseMatrix result = null; 
+        SparseMatrix result = null;
 
         Node[] rowHeaders = createRowHeaders(m.getSize());
         Node[] colHeaders = createColHeaders(m.getSize());
@@ -134,7 +134,7 @@ public class SparseMatrix {
 
         result = new SparseMatrix(rowHeaders, colHeaders);
         result.size = m.getSize();
-        
+
         return result;
     }
 
@@ -143,23 +143,23 @@ public class SparseMatrix {
             return;
         else if(x.col == y.col) {
             insert(rowHead, colHead, x.value + (-1*y.value), x.row, x.col);
-            addNodes(rowHead, colHead, x.rowLink, y.rowLink);
+            subtractNodes(rowHead, colHead, x.rowLink, y.rowLink);
             return;
         } else if(x.col != -1 && y.col == -1) {
             insert(rowHead, colHead, x.value, x.row, x.col);
-            addNodes(rowHead, colHead, x.rowLink, y);
+            subtractNodes(rowHead, colHead, x.rowLink, y);
             return;
         } else if(y.col != -1 && x.col == -1) {
-            insert(rowHead, colHead, -1*y.value, y.row, y.col);
-            addNodes(rowHead, colHead, x, y.rowLink);
+            insert(rowHead, colHead, (-1*y.value), y.row, y.col);
+            subtractNodes(rowHead, colHead, x, y.rowLink);
             return;
         } else if(x.col < y.col && x.col != -1) {
             insert(rowHead, colHead, x.value, x.row, x.col);
-            addNodes(rowHead, colHead, x.rowLink, y);
+            subtractNodes(rowHead, colHead, x.rowLink, y);
             return;
         } else if(y.col < x.col && y.col != -1) {
-            insert(rowHead, colHead, -1*y.value, y.row, y.col);
-            addNodes(rowHead, colHead, x, y.rowLink);
+            insert(rowHead, colHead, (-1*y.value), y.row, y.col);
+            subtractNodes(rowHead, colHead, x, y.rowLink);
             return;
         }
     }
@@ -168,7 +168,7 @@ public class SparseMatrix {
     // integer a
     public SparseMatrix scalarMultiply(int a) {
         SparseMatrix result = null;
-        
+
         Node[] rowHeaders = createRowHeaders(size);
         Node[] colHeaders = createColHeaders(size);
 
@@ -195,12 +195,12 @@ public class SparseMatrix {
     //parameter m --> another sparse matrix m
     public SparseMatrix matrixMultiply(SparseMatrix m) {
         SparseMatrix result = null;
-                   
+
         return result;
     }
 
     public static void dotProductNodes(Node[] rowHeads, Node[] colHeads, Node rowNode, Node colNode) {
-        
+
         return;
     }
 
@@ -209,7 +209,7 @@ public class SparseMatrix {
         SparseMatrix result = null;
         return result;
     }
-    
+
     //transpose matrix itself
     public SparseMatrix transpose() {
         SparseMatrix result = null;
@@ -266,7 +266,7 @@ public class SparseMatrix {
                     insert(rowHeads,colHeads,-i, i-1, j-1);
             }
         }
-        
+
         matrix = new SparseMatrix(rowHeads, colHeads);
         matrix.size = n;
 
@@ -334,9 +334,9 @@ public class SparseMatrix {
         System.out.println("x: " + node.value + " col: " + node.col + " row: " + node.row);
         followNode(node.rowLink);
     }
-    
+
     public int getSize(){ return size; }
 
     public void setSize(int i) { this.size = i; }
-    
+
 }
