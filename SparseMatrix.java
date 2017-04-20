@@ -196,10 +196,48 @@ public class SparseMatrix {
     public SparseMatrix matrixMultiply(SparseMatrix m) {
         SparseMatrix result = null;
 
+        Node[] rows = createRowHeaders(size);
+        Node[] cols = createColHeaders(size);
+        
+        //System.out.println(size);
+
+        for(int i=0; i < size; i++){
+          for(int j=0; j < size; j++) {
+             dotProductNodes(rows, cols, rowHeads[i].rowLink, m.colHeads[j].colLink);
+          }
+        }
+
+        result = new SparseMatrix(rows, cols);
+        result.size = size;
+        
         return result;
     }
 
     public static void dotProductNodes(Node[] rowHeads, Node[] colHeads, Node rowNode, Node colNode) {
+        
+        double total = 0;
+        
+        int initRow = rowNode.row;
+        int initCol = colNode.col;
+        
+        if(initRow == -1 || initCol == -1) { // meaning a row or column of all zeros this will return zeros fro that entire row or column
+          return;
+        }
+
+        while (rowNode.col != -1 && colNode.row != -1) {
+          if(rowNode.col == colNode.row) {
+            total += rowNode.value * colNode.value;
+            rowNode = rowNode.rowLink;
+            colNode = colNode.colLink;
+          } else if (rowNode.col > colNode.row && colNode.row != -1) {
+            colNode = colNode.colLink;
+          } else if (rowNode.col < colNode.row && rowNode.col != -1) {
+            rowNode = rowNode.rowLink;
+          }
+        }
+        
+        //System.out.println(initRow + " " + initCol);
+        insert(rowHeads, colHeads, total, initRow, initCol);
 
         return;
     }

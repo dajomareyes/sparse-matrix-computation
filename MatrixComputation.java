@@ -71,13 +71,33 @@ public class MatrixComputation {
         SparseMatrix matrixN = matrixM.subtract(matrixI);
         matrixN.print();
 
-        /* Phase 2
+        /*
+        System.out.println("============================= TESTING ===============================");
+        SparseMatrix david = SparseMatrix.twoByTwoMatrix();
+        david.print();
+        System.out.println();
+
+        SparseMatrix john = SparseMatrix.twoByTwoMatrix();
+        john.print();
+        System.out.println();
+        
+        SparseMatrix jada = david.matrixMultiply(john);
+        jada.print();
+        System.out.println();
+        */
+        
+        
         // Testcase Step 3
-        System.out.println("11. Matrix O = 5 * B: ");
+        System.out.println("=============================11. Matrix O = 5 * B: ");
         SparseMatrix matrixO = matrixB.scalarMultiply(5);
         matrixO.print();
         //follow the format above and fill up to 22. Matrix Z = M * T
 
+        System.out.println("=============================12. Matrix P = A * B: ");
+        SparseMatrix matrixP = matrixA.matrixMultiply(matrixB);
+        matrixP.print();
+        
+        /*
         //Optional
         System.out.println("23. Matrix AA = transpose(F): ");
         SparseMatrix matrixAA = matrixF.transpose();
