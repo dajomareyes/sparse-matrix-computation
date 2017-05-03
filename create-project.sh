@@ -20,7 +20,8 @@ echo creating zipped version of DIR
 cd submit
 
 # change the line below to create a new tar version for each project step
-tar -zcvf step-one.tar.gz *.java *.txt
-
+# tar -zcvf step-one.tar.gz *.java *.txt
+tar -zcvf step-two.tar.gz *.java *.txt
+# tar -zcvf step-three.tar.gz *.java *.txt
 echo finished...
 
